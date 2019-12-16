@@ -9,7 +9,24 @@ var items = {};
 
 exports.create = (text, callback) => {
   var id = counter.getNextUniqueId();
+
   items[id] = text;
+
+  //***************************** */
+
+
+  console.log('---------------------yes----------------------> ', path.join(this.dataDir, '/', id + '.txt'))
+  fs.writeFile(path.join(this.dataDir, '/', id + '.txt'), text, (err, text) => {
+    if (err) {
+      callback(null, 0);
+    } else {
+      callback(null, { id, text });
+    }
+  });
+
+
+
+  //********************** */
   callback(null, { id, text });
 };
 
